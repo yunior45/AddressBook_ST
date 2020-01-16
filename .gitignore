@@ -1,0 +1,11 @@
+## Ignore Visual Studio temporary files and build results
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+*out/
+
+# Module file created by IntelliJ IDEA
+*.iml
+
+*.idea/
