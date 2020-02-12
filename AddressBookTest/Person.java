@@ -1,4 +1,4 @@
-package AddressBook;
+package AddressBookTest;
 
 import java.util.regex.Pattern;
 

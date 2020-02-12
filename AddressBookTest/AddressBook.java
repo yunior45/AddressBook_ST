@@ -1,4 +1,4 @@
-package AddressBook;
+package AddressBookTest;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

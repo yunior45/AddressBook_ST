@@ -1,7 +1,7 @@
 package GUI;
 
-import AddressBook.Person;
-import com.sun.istack.internal.Nullable;
+import AddressBookTest.Person;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

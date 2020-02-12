@@ -1,9 +1,9 @@
 package GUI;
 
-import AddressBook.AddressBook;
-import AddressBook.AddressBookController;
-import AddressBook.FileSystem;
-import AddressBook.Person;
+import AddressBookTest.AddressBook;
+import AddressBookTest.AddressBookController;
+import AddressBookTest.FileSystem;
+import AddressBookTest.Person;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -15,7 +15,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.regex.Pattern;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 
