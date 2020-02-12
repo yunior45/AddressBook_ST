@@ -43,12 +43,12 @@ public class PersonTest {
 
     @Test
     public void getZip() {
-        assertEquals("33024", person.getState());
+        assertEquals("33024", person.getZip());
     }
 
     @Test
     public void getPhone() {
-        assertEquals("3056952200", person.getState());
+        assertEquals("3056952200", person.getPhone());
     }
 
     @Test
