@@ -15,6 +15,10 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.regex.Pattern;
 
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+
 
 public class AddressBookGUI extends JFrame {
    
