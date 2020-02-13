@@ -58,10 +58,32 @@ public class PersonTest {
 
     @Test
     public void containsString() {
+        String[] personArray = new String[]{
+                "Joe",
+                "Gonzalez",
+                "711 Hope St",
+                "Hollywood",
+                "FL",
+                "33024",
+                "3056952200"
+        };
 
     }
 
     @Test
     public void getField() {
+        assertTrue(person.getField(0)=="Gonzalez");
+        assertTrue(person.getField(1)=="Joe");
+        assertTrue(person.getField(2)=="711 Hope St");
+        assertTrue(person.getField(3)=="Hollywood");
+        assertTrue(person.getField(4)=="FL");
+        assertTrue(person.getField(5)=="33024");
+        assertTrue(person.getField(6)=="3056952200");
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void getFieldException(){
+        assertTrue(person.getField(-1)=="Field number out of bounds");
+        assertTrue(person.getField(7)=="Field number out of bounds");
     }
 }
