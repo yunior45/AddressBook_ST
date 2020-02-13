@@ -1,53 +1,51 @@
-import AddressBookTest.Person;
-import org.junit.Test;
+package AddressBookTest;
 
-import static org.junit.Assert.*;
+    import org.junit.Test;
+
+    import java.util.regex.Pattern;
+
+    import static org.junit.Assert.*;
+
 
 public class PersonTest {
 
+
     private final Person person = new Person(
-            "Joe",
+        "Joe",
+        "Gonzalez",
+        "711 Hope St",
+        "Hollywood",
+        "FL",
+        "33024",
+        "3056952200"
+    );
+
+    @Test(expected=IllegalArgumentException.class)
+    public void PersonFirstNameException(){
+        Person personException = new Person(
+            "",
             "Gonzalez",
             "711 Hope St",
             "Hollywood",
             "FL",
             "33024",
             "3056952200"
-    );
+        );
+        assertEquals("First name cannot be empty", personException.getFirstName());
+    }
 
-    @Test
-    public void testPersonException(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person(null, null, "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person(null, "", "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person(null, "Lozada", "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person("", null, "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person("", "", "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person("", "Lozada", "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person("Greg", null, "", "", "", "", "");
-        });
-
-        assertThrows(IllegalArgumentException.class, () ->{
-            Person person_test = new Person("Greg", "", "", "", "", "", "");
-        });
+    @Test(expected=IllegalArgumentException.class)
+    public void PersonLastNameException(){
+        Person personException = new Person(
+            "Joe",
+            "",
+            "711 Hope St",
+            "Hollywood",
+            "FL",
+            "33024",
+            "3056952200"
+        );
+        assertEquals("Last name cannot be empty", personException.getLastName());
     }
 
     @Test
@@ -93,42 +91,97 @@ public class PersonTest {
     @Test
     public void containsString() {
         String[] personArray = new String[]{
-                "Joe",
-                "Gonzalez",
-                "711 Hope St",
-                "Hollywood",
-                "FL",
-                "33024",
-                "3056952200"
+            "Joe",
+            "Gonzalez",
+            "711 Hope St",
+            "Hollywood",
+            "FL",
+            "33024",
+            "3056952200"
         };
 
-        assertTrue(person.containsString("Joe"));
-        assertTrue(person.containsString("joe"));
-        assertFalse(person.containsString("123"));
-        assertThrows(NullPointerException.class, () ->{
-            person.containsString(null);
-        });
+        int caseCounter=0;
+        String field;
+        int caseCounterFields=0;
+        String matcherField;
+
+
+        while(caseCounter<7){
+
+            switch(caseCounterFields){
+                case 0:
+                    matcherField = person.getFirstName();
+                    break;
+                case 1:
+                    matcherField = person.getLastName();
+                    break;
+                case 2:
+                    matcherField = person.getAddress();
+                    break;
+                case 3:
+                    matcherField = person.getCity();
+                    break;
+                case 4:
+                    matcherField = person.getState();
+                    break;
+                case 5:
+                    matcherField = person.getZip();
+                    break;
+                case 6:
+                    matcherField = person.getPhone();
+                    break;
+                default:
+                    matcherField = "Invalid";
+                    break;
+            }
+
+            switch (caseCounter) {
+                case 0:
+                    field = "Joe";
+                    break;
+                case 1:
+                    field = "Gonzalez";
+                    break;
+                case 2:
+                    field = "711 Hope St";
+                    break;
+                case 3:
+                    field = "Hollywood";
+                    break;
+                case 4:
+                    field = "FL";
+                    break;
+                case 5:
+                    field = "33024";
+                    break;
+                case 6:
+                    field = "3056952200";
+                    break;
+                default:
+                    field = "Invalid";
+                    break;
+            }
+            Pattern p = Pattern.compile(Pattern.quote(field), Pattern.CASE_INSENSITIVE);
+            assertTrue(personArray[caseCounter], p.matcher(matcherField).find());
+            caseCounter++;
+            caseCounterFields++;
+        }
     }
 
     @Test
     public void getField() {
-        assertEquals("Gonzalez", person.getField(0));
-        assertEquals("Joe", person.getField(1));
-        assertEquals("711 Hope St", person.getField(2));
-        assertEquals("Hollywood", person.getField(3));
-        assertEquals("FL", person.getField(4));
-        assertEquals("33024", person.getField(5));
-        assertEquals("3056952200", person.getField(6));
+        assertTrue(person.getField(0)=="Gonzalez");
+        assertTrue(person.getField(1)=="Joe");
+        assertTrue(person.getField(2)=="711 Hope St");
+        assertTrue(person.getField(3)=="Hollywood");
+        assertTrue(person.getField(4)=="FL");
+        assertTrue(person.getField(5)=="33024");
+        assertTrue(person.getField(6)=="3056952200");
     }
 
-    @Test
+    @Test(expected=IllegalArgumentException.class)
     public void getFieldException(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            person.getField(-1);
-        });
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            person.getField(7);
-        });
+        assertTrue(person.getField(-1)=="Field number out of bounds");
+        assertTrue(person.getField(7)=="Field number out of bounds");
     }
 }
