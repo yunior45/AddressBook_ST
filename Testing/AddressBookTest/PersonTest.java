@@ -100,71 +100,9 @@ public class PersonTest {
                 "3056952200"
         };
 
-        int caseCounter=0;
-        String field;
-        int caseCounterFields=0;
-        String matcherField;
-
-
-        while(caseCounter<7){
-
-            switch(caseCounterFields){
-                case 0:
-                    matcherField = person.getFirstName();
-                    break;
-                case 1:
-                    matcherField = person.getLastName();
-                    break;
-                case 2:
-                    matcherField = person.getAddress();
-                    break;
-                case 3:
-                    matcherField = person.getCity();
-                    break;
-                case 4:
-                    matcherField = person.getState();
-                    break;
-                case 5:
-                    matcherField = person.getZip();
-                    break;
-                case 6:
-                    matcherField = person.getPhone();
-                    break;
-                default:
-                    matcherField = "Invalid";
-                    break;
-            }
-
-            switch (caseCounter) {
-                case 0:
-                    field = "Joe";
-                    break;
-                case 1:
-                    field = "Gonzalez";
-                    break;
-                case 2:
-                    field = "711 Hope St";
-                    break;
-                case 3:
-                    field = "Hollywood";
-                    break;
-                case 4:
-                    field = "FL";
-                    break;
-                case 5:
-                    field = "33024";
-                    break;
-                case 6:
-                    field = "3056952200";
-                    break;
-                default:
-                    field = "Invalid";
-                    break;
-            }
-            Pattern p = Pattern.compile(Pattern.quote(field), Pattern.CASE_INSENSITIVE);
-            assertTrue(personArray[caseCounter], p.matcher(matcherField).find());
-            caseCounter++;
-            caseCounterFields++;
+        int i;
+        for(i=0;i<7;i++){
+            assertTrue("True", person.containsString(personArray[i]));
         }
     }
 
