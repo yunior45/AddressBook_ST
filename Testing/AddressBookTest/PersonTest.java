@@ -1,12 +1,11 @@
-package AddressBookTest;
-
+import AddressBookTest.Person;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class PersonTest {
 
-    public final Person person = new Person(
+    private final Person person = new Person(
             "Joe",
             "Gonzalez",
             "711 Hope St",
@@ -15,6 +14,41 @@ public class PersonTest {
             "33024",
             "3056952200"
     );
+
+    @Test
+    public void testPersonException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person(null, null, "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person(null, "", "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person(null, "Lozada", "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person("", null, "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person("", "", "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person("", "Lozada", "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person("Greg", null, "", "", "", "", "");
+        });
+
+        assertThrows(IllegalArgumentException.class, () ->{
+            Person person_test = new Person("Greg", "", "", "", "", "", "");
+        });
+    }
 
     @Test
     public void getFirstName() {
@@ -68,22 +102,33 @@ public class PersonTest {
                 "3056952200"
         };
 
+        assertTrue(person.containsString("Joe"));
+        assertTrue(person.containsString("joe"));
+        assertFalse(person.containsString("123"));
+        assertThrows(NullPointerException.class, () ->{
+            person.containsString(null);
+        });
     }
 
     @Test
     public void getField() {
-        assertTrue(person.getField(0)=="Gonzalez");
-        assertTrue(person.getField(1)=="Joe");
-        assertTrue(person.getField(2)=="711 Hope St");
-        assertTrue(person.getField(3)=="Hollywood");
-        assertTrue(person.getField(4)=="FL");
-        assertTrue(person.getField(5)=="33024");
-        assertTrue(person.getField(6)=="3056952200");
+        assertEquals("Gonzalez", person.getField(0));
+        assertEquals("Joe", person.getField(1));
+        assertEquals("711 Hope St", person.getField(2));
+        assertEquals("Hollywood", person.getField(3));
+        assertEquals("FL", person.getField(4));
+        assertEquals("33024", person.getField(5));
+        assertEquals("3056952200", person.getField(6));
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void getFieldException(){
-        assertTrue(person.getField(-1)=="Field number out of bounds");
-        assertTrue(person.getField(7)=="Field number out of bounds");
+        assertThrows(IllegalArgumentException.class, () -> {
+            person.getField(-1);
+        });
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            person.getField(7);
+        });
     }
 }
