@@ -9,3 +9,7 @@
 *.iml
 
 *.idea/
+
+# Code Coverage Results
+coverage-reports/
+.clover/
