@@ -47,34 +47,6 @@ public class PersonTest {
         assertEquals("Last name cannot be empty", personException.getLastName());
     }
 
-    @Test(expected=IllegalArgumentException.class)
-    public void PersonFirstNameException(){
-        Person personException = new Person(
-                "",
-                "Gonzalez",
-                "711 Hope St",
-                "Hollywood",
-                "FL",
-                "33024",
-                "3056952200"
-        );
-        assertEquals("First name cannot be empty", personException.getFirstName());
-    }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void PersonLastNameException(){
-        Person personException = new Person(
-                "Joe",
-                "",
-                "711 Hope St",
-                "Hollywood",
-                "FL",
-                "33024",
-                "3056952200"
-        );
-        assertEquals("Last name cannot be empty", personException.getLastName());
-    }
-
     @Test
     public void getFirstName() {
         assertEquals("Joe", person.getFirstName());
