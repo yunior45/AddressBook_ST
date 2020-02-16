@@ -8,3 +8,10 @@
 *.iml
 
 *.idea/
+<<<<<<< HEAD
+=======
+
+# Code Coverage Results
+coverage-reports/
+.clover/
+>>>>>>> c4c28b9ae0c9f19bb66f04fd387fed6631d1b4e0
