@@ -1,35 +1,34 @@
 package AddressBookTest;
 
-import org.junit.Test;
+    import org.junit.Test;
 
-import java.util.regex.Pattern;
+    import java.util.regex.Pattern;
 
-import static org.junit.Assert.*;
+    import static org.junit.Assert.*;
 
 
 public class PersonTest {
 
+    private final Person person = new Person(
+        "Joe",
+        "Gonzalez",
+        "711 Hope St",
+        "Hollywood",
+        "FL",
+        "33024",
+        "3056952200"
+    );
 
-    public final Person person = new Person(
-            "Joe",
+    @Test(expected=IllegalArgumentException.class)
+    public void PersonFirstNameException(){
+        Person personException = new Person(
+            "",
             "Gonzalez",
             "711 Hope St",
             "Hollywood",
             "FL",
             "33024",
             "3056952200"
-    );
-
-    @Test(expected=IllegalArgumentException.class)
-    public void PersonFirstNameException(){
-        Person personException = new Person(
-                "",
-                "Gonzalez",
-                "711 Hope St",
-                "Hollywood",
-                "FL",
-                "33024",
-                "3056952200"
         );
         assertEquals("First name cannot be empty", personException.getFirstName());
     }
@@ -37,13 +36,13 @@ public class PersonTest {
     @Test(expected=IllegalArgumentException.class)
     public void PersonLastNameException(){
         Person personException = new Person(
-                "Joe",
-                "",
-                "711 Hope St",
-                "Hollywood",
-                "FL",
-                "33024",
-                "3056952200"
+            "Joe",
+            "",
+            "711 Hope St",
+            "Hollywood",
+            "FL",
+            "33024",
+            "3056952200"
         );
         assertEquals("Last name cannot be empty", personException.getLastName());
     }
@@ -91,13 +90,13 @@ public class PersonTest {
     @Test
     public void containsString() {
         String[] personArray = new String[]{
-                "Joe",
-                "Gonzalez",
-                "711 Hope St",
-                "Hollywood",
-                "FL",
-                "33024",
-                "3056952200"
+            "Joe",
+            "Gonzalez",
+            "711 Hope St",
+            "Hollywood",
+            "FL",
+            "33024",
+            "3056952200"
         };
 
         int caseCounter=0;
