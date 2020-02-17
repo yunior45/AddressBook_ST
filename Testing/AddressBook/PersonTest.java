@@ -1,9 +1,7 @@
-package AddressBookTest;
+package AddressBook;
 
+    import AddressBookTest.Person;
     import org.junit.Test;
-
-    import java.util.regex.Pattern;
-
     import static org.junit.Assert.*;
 
 
