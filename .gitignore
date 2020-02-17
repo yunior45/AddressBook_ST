@@ -2,6 +2,7 @@
 
 # Build results
 *out/
+.clover/
 
 # Module file created by IntelliJ IDEA
 *.iml
