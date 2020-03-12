@@ -1,5 +1,6 @@
 import AddressBookTest.AddressBook;
 import AddressBookTest.Person;
+import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class AddressBookTest {
     Assert.assertEquals(0, addressBook.getPersons().length);
     addressBook.add(person1);
     Assert.assertEquals(1, addressBook.getPersons().length);
+    addressBook.add(null);
+    Assert.assertEquals(2, addressBook.getPersons().length);
   }
 
   @Test
@@ -50,7 +53,7 @@ public class AddressBookTest {
 
   @Test
   public void testRemove() throws Exception {
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.remove(0);
     });
 
@@ -58,16 +61,15 @@ public class AddressBookTest {
     addressBook.add(person2);
     addressBook.add(person3);
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.remove(-1);
     });
 
     addressBook.remove(1);
     Assert.assertEquals(person3, addressBook.get(1));
 
-    addressBook.remove(1);
-    Assert.assertThrows(Exception.class, () -> {
-      addressBook.get(1);
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
+      addressBook.remove(2);
     });
   }
 
