@@ -1,7 +1,6 @@
-package AddressBook;
-
 import AddressBookTest.AddressBook;
 import AddressBookTest.Person;
+import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,32 +26,30 @@ public class AddressBookTest {
     Assert.assertEquals(0, addressBook.getPersons().length);
     addressBook.add(person1);
     Assert.assertEquals(1, addressBook.getPersons().length);
+    addressBook.add(null);
+    Assert.assertEquals(2, addressBook.getPersons().length);
   }
 
   @Test
   public void testSet() throws Exception {
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.set(0, person1);
     });
 
     addressBook.add(person1);
     addressBook.add(person2);
-    addressBook.add(person3);
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.set(-1, person1);
     });
 
     addressBook.set(1, person3);
     Assert.assertEquals(person3, addressBook.get(1));
-
-    addressBook.set(0, null);
-    Assert.assertNull(addressBook.get(0));
   }
 
   @Test
   public void testRemove() throws Exception {
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.remove(0);
     });
 
@@ -60,16 +57,15 @@ public class AddressBookTest {
     addressBook.add(person2);
     addressBook.add(person3);
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.remove(-1);
     });
 
     addressBook.remove(1);
     Assert.assertEquals(person3, addressBook.get(1));
 
-    addressBook.remove(1);
-    Assert.assertThrows(Exception.class, () -> {
-      addressBook.get(1);
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
+      addressBook.remove(2);
     });
   }
 

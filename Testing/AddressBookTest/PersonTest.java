@@ -1,6 +1,4 @@
-package AddressBook;
-
-    import AddressBookTest.Person;
+import AddressBookTest.Person;
     import org.junit.Test;
     import static org.junit.Assert.*;
 
