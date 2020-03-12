@@ -1,5 +1,3 @@
-package AddressBook;
-
 /***********************************************
  * Subject: AddressBook FileSystem test class
  * Course: CEN 4072 Software Testing

@@ -1,5 +1,3 @@
-package AddressBook;
-
 import AddressBookTest.AddressBook;
 import AddressBookTest.Person;
 import java.util.NoSuchElementException;
@@ -34,23 +32,19 @@ public class AddressBookTest {
 
   @Test
   public void testSet() throws Exception {
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.set(0, person1);
     });
 
     addressBook.add(person1);
     addressBook.add(person2);
-    addressBook.add(person3);
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.set(-1, person1);
     });
 
     addressBook.set(1, person3);
     Assert.assertEquals(person3, addressBook.get(1));
-
-    addressBook.set(0, null);
-    Assert.assertNull(addressBook.get(0));
   }
 
   @Test
