@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 
-public class AddressBookMockTest {
+public class AddressBookIT {
     AddressBook addressBookObj = new AddressBook();
     Person person1;
     Person person2;
