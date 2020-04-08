@@ -1,3 +1,5 @@
+package AddressBookTest;
+
 import static org.junit.Assert.*;
 
 import AddressBookTest.AddressBook;

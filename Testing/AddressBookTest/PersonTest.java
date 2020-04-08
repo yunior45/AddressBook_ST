@@ -1,4 +1,14 @@
-import AddressBookTest.Person;
+package AddressBookTest;
+
+/***********************************************
+ * Subject: AddressBook FileSystem test class
+ * Course: CEN 4072 Software Testing
+ * Author: Yunior Rivera
+ * *********************************************/
+
+
+import AddressBookTest.AddressBook;
+    import AddressBookTest.Person;
     import org.junit.Test;
     import static org.junit.Assert.*;
 

@@ -1,3 +1,5 @@
+package AddressBookTest;
+
 import AddressBookTest.AddressBook;
 import AddressBookTest.Person;
 import java.util.NoSuchElementException;

@@ -4,6 +4,8 @@
  * Author: Yunior Rivera
  * *********************************************/
 
+package AddressBookTest;
+
 import AddressBookTest.AddressBook;
 import AddressBookTest.FileSystem;
 import AddressBookTest.Person;
