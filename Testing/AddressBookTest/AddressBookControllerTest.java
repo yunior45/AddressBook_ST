@@ -3,14 +3,13 @@ import static org.junit.Assert.*;
 import AddressBookTest.AddressBook;
 import AddressBookTest.AddressBookController;
 import AddressBookTest.Person;
-import java.io.File;
 import org.junit.Test;
 
 public class AddressBookControllerTest {
-  Person testPersonA;
-  Person testPersonB;
-  AddressBook testAddressBook;
-  AddressBookController testAddressBookController;
+  private Person testPersonA;
+  private Person testPersonB;
+  private AddressBook testAddressBook;
+  private AddressBookController testAddressBookController;
 
   private void buildTestData(){
     // Building test data.
@@ -113,13 +112,5 @@ public class AddressBookControllerTest {
 
     testAddressBookController.clear();
     assertEquals(0, testAddressBookController.getModel().getRowCount());
-  }
-
-  @Test
-  public void open() {
-  }
-
-  @Test
-  public void save() {
   }
 }
