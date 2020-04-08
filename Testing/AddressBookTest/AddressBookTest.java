@@ -16,7 +16,7 @@ public class AddressBookTest {
   private Person person3;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     addressBook = new AddressBook();
     person1 = new Person("Greg", "Lozada", "1234 Name Ln", "Naples", "FL", "34109", "1234567890");
     person2 = new Person("Kamp", "Duong", "1234 Name Ln", "Naples", "FL", "34109", "1234567890");
@@ -24,7 +24,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testAddPerson() throws Exception {
+  public void testAddPerson() {
     Assert.assertEquals(0, addressBook.getPersons().length);
     addressBook.add(person1);
     Assert.assertEquals(1, addressBook.getPersons().length);
@@ -33,7 +33,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testSet() throws Exception {
+  public void testSet() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.set(0, person1);
     });
@@ -50,7 +50,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testRemove() throws Exception {
+  public void testRemove() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.remove(0);
     });
@@ -72,7 +72,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testGet() throws Exception {
+  public void testGet() {
     Assert.assertThrows(Exception.class, () -> {
       addressBook.get(0);
     });
@@ -95,7 +95,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testClear() throws Exception {
+  public void testClear() {
     Assert.assertEquals(0, addressBook.getPersons().length);
 
     addressBook.add(person1);
@@ -112,7 +112,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testRowCount() throws Exception {
+  public void testRowCount() {
     Assert.assertEquals(0, addressBook.getRowCount());
 
     addressBook.add(person1);
@@ -126,12 +126,12 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testColumnCount() throws Exception {
+  public void testColumnCount() {
     Assert.assertEquals(7, addressBook.getColumnCount());
   }
 
   @Test
-  public void testColumnName() throws Exception {
+  public void testColumnName() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.getColumnName(-1);
     });
@@ -150,7 +150,7 @@ public class AddressBookTest {
   }
 
   @Test
-  public void testGetValue() throws Exception {
+  public void testGetValue() {
     Assert.assertThrows(Exception.class, () -> {
       addressBook.getValueAt(0, 0);
     });
