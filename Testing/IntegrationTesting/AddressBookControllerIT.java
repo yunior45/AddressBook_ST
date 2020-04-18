@@ -1,83 +1,109 @@
-package IntegrationTesting;
+package Testing.IntegrationTesting;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.isA;
 
+import AddressBookTest.AddressBookController;
+import AddressBookTest.AddressBook;
+import AddressBookTest.Person;
+import AddressBookTest.FileSystem;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import AddressBookTest.AddressBookController;
-import AddressBookTest.FileSystem;
-import AddressBookTest.AddressBook;
-import AddressBookTest.Person;
+import org.mockito.Mock;
 
 public class AddressBookControllerIT {
+  private AddressBookController addressBookController;
 
-  private AddressBookController testAddressBookController;
-  private AddressBook addressBookMock;
+  @Mock
+  AddressBook addressBook;
+  @Mock
+  Person person;
 
-  private Person personAMock;
-  private Person personBMock;
-  private Person personCMock;
-
-  private FileSystem fileSystemMock;
-  private File fileMock;
+  @Mock
+  FileSystem fileSystem;
+  @Mock
+  File invalidFile;
+  @Mock
+  File validFile;
 
   @Before
   public void init() {
-    personAMock = mock(Person.class);
-    personBMock = mock(Person.class);
-    personCMock = mock(Person.class);
+    addressBook = mock(AddressBook.class);
+    fileSystem = mock(FileSystem.class);
+    person = mock(Person.class);
+    invalidFile = mock(File.class);
+    validFile = mock(File.class);
 
-    fileSystemMock = mock(FileSystem.class);
-    fileMock = mock(File.class);
+    when(addressBook.get(0)).thenReturn(person);
+    when(validFile.exists()).thenReturn(true);
+    when(validFile.canRead()).thenReturn(true);
 
-    addressBookMock = mock(AddressBook.class);
-    // Creating Stubs
-    when(addressBookMock.get(0)).thenReturn(personAMock);
-    when(addressBookMock.get(1)).thenReturn(personBMock);
-    when(addressBookMock.get(2)).thenReturn(personCMock);
-
-    testAddressBookController =
-        new AddressBookController(addressBookMock);
+    addressBookController = new AddressBookController(addressBook);
   }
 
   @Test
-  public void testAddMethod() {
-    testAddressBookController.add(personAMock);
-    assertEquals(personAMock, testAddressBookController.get(0));
+  public void testAdd() {
+    addressBookController.add(person);
 
-    verify(addressBookMock).add(personAMock);
+    verify(addressBook).add(person);
   }
 
   @Test
-  public void testSetMethod() {
-    testAddressBookController.add(personCMock);
-    testAddressBookController.set(1, personBMock);
+  public void testSet() {
+    addressBookController.set(1, person);
 
-    assertNotEquals(personCMock, testAddressBookController.get(1));
-    assertEquals(personBMock, testAddressBookController.get(1));
-
-    verify(addressBookMock).set(1, personBMock);
+    verify(addressBook).set(1, person);
   }
 
   @Test
-  public void testSaveMethod() throws SQLException, NullPointerException, FileNotFoundException {
-    doThrow(new NullPointerException())
-        .when(fileSystemMock).saveFile(addressBookMock, fileMock);
+  public void testRemove(){
+    addressBookController.remove(0);
 
-    try {
-      testAddressBookController.save(fileMock);
-    } catch (NullPointerException e) {}
+    verify(addressBook).remove(0);
   }
 
   @Test
-  public void testGetModelMethod() {
+  public void testGet(){
+    Assert.assertEquals(person, addressBookController.get(0));
+  }
+
+  @Test
+  public void testClear(){
+    addressBookController.clear();
+
+    verify(addressBook).clear();
+  }
+
+  @Test(expected=FileNotFoundException.class)
+  public void testOpenInvalidFile() throws FileNotFoundException, SQLException {
+    addressBookController.open(invalidFile);
+  }
+
+  @Test
+  public void testOpenValidFile() throws FileNotFoundException, SQLException {
+    addressBookController.open(validFile);
+
+    verify(addressBook).fireTableDataChanged();
+  }
+
+  @Test (expected = NullPointerException.class)
+  public void testSave() throws SQLException, NullPointerException {
+    addressBookController.save(validFile);
+  }
+
+  @Test
+  public void testGetModel() {
     AddressBook testAddressBook;
-    testAddressBook = testAddressBookController.getModel();
+    testAddressBook = addressBookController.getModel();
 
-    assertEquals(testAddressBook, addressBookMock);
+    assertEquals(testAddressBook, addressBook);
   }
 }
