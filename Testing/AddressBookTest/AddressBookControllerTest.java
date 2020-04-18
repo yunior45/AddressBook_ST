@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import AddressBookTest.AddressBook;
 import AddressBookTest.AddressBookController;
 import AddressBookTest.Person;
+import java.io.File;
+import java.io.FileNotFoundException;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class AddressBookControllerTest {
@@ -48,6 +51,8 @@ public class AddressBookControllerTest {
 
     // Test for equivalence.
     assertEquals(testPersonA, result);
+
+
   }
 
   @Test
@@ -114,5 +119,18 @@ public class AddressBookControllerTest {
 
     testAddressBookController.clear();
     assertEquals(0, testAddressBookController.getModel().getRowCount());
+  }
+
+  @Test
+  public void open() {
+    buildTestData();
+
+    Assert.assertThrows(NullPointerException.class, () -> {
+      testAddressBookController.open(null);
+    });
+
+    Assert.assertThrows(FileNotFoundException.class, () -> {
+      testAddressBookController.open(new File(""));
+    });
   }
 }

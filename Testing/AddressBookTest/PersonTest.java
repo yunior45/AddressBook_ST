@@ -9,7 +9,8 @@ package AddressBookTest;
 
 import AddressBookTest.AddressBook;
     import AddressBookTest.Person;
-    import org.junit.Test;
+import org.junit.Assert;
+import org.junit.Test;
     import static org.junit.Assert.*;
 
 
@@ -25,32 +26,58 @@ public class PersonTest {
         "3056952200"
     );
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void PersonFirstNameException(){
-        Person personException = new Person(
-            "",
-            "Gonzalez",
-            "711 Hope St",
-            "Hollywood",
-            "FL",
-            "33024",
-            "3056952200"
-        );
-        assertEquals("First name cannot be empty", personException.getFirstName());
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
+            Person personException = new Person(
+                "",
+                "Gonzalez",
+                "711 Hope St",
+                "Hollywood",
+                "FL",
+                "33024",
+                "3056952200"
+            );
+        });
+
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
+            Person personException = new Person(
+                null,
+                "Gonzalez",
+                "711 Hope St",
+                "Hollywood",
+                "FL",
+                "33024",
+                "3056952200"
+            );
+        });
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void PersonLastNameException(){
-        Person personException = new Person(
-            "Joe",
-            "",
-            "711 Hope St",
-            "Hollywood",
-            "FL",
-            "33024",
-            "3056952200"
-        );
-        assertEquals("Last name cannot be empty", personException.getLastName());
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
+            Person personException = new Person(
+                "Joe",
+                "",
+                "711 Hope St",
+                "Hollywood",
+                "FL",
+                "33024",
+                "3056952200"
+            );
+        });
+
+        Assert.assertThrows(IllegalArgumentException.class, () -> {
+            Person personException = new Person(
+                "Joe",
+                null,
+                "711 Hope St",
+                "Hollywood",
+                "FL",
+                "33024",
+                "3056952200"
+            );
+        });
     }
 
     @Test
@@ -107,19 +134,21 @@ public class PersonTest {
 
         int i;
         for(i=0;i<7;i++){
-            assertTrue("True", person.containsString(personArray[i]));
+            assertTrue(person.containsString(personArray[i]));
         }
+
+        assertTrue(!person.containsString("Greg"));
     }
 
     @Test
     public void getField() {
-        assertTrue(person.getField(0)=="Gonzalez");
-        assertTrue(person.getField(1)=="Joe");
-        assertTrue(person.getField(2)=="711 Hope St");
-        assertTrue(person.getField(3)=="Hollywood");
-        assertTrue(person.getField(4)=="FL");
-        assertTrue(person.getField(5)=="33024");
-        assertTrue(person.getField(6)=="3056952200");
+        assertEquals("Gonzalez", person.getField(0));
+        assertEquals("Joe", person.getField(1));
+        assertEquals("711 Hope St", person.getField(2));
+        assertEquals("Hollywood", person.getField(3));
+        assertEquals("FL", person.getField(4));
+        assertEquals("33024", person.getField(5));
+        assertEquals("3056952200", person.getField(6));
     }
 
     @Test(expected=IllegalArgumentException.class)
