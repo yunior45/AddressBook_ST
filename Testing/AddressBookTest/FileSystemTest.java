@@ -1,10 +1,10 @@
-package AddressBook;
-
 /***********************************************
  * Subject: AddressBook FileSystem test class
  * Course: CEN 4072 Software Testing
  * Author: Yunior Rivera
  * *********************************************/
+
+package AddressBookTest;
 
 import AddressBookTest.AddressBook;
 import AddressBookTest.FileSystem;
@@ -34,8 +34,8 @@ public class FileSystemTest {
         AddressBook addressBook = new AddressBook();
         assertNotNull(addressBook);
         File testFile = new File("");
-        new FileSystem().readFile(addressBook, testFile);
         assertTrue(!testFile.exists() || !testFile.canRead());
+        new FileSystem().readFile(addressBook, testFile);
         addressBook.fireTableDataChanged();
     }
 
