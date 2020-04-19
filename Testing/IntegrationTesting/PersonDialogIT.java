@@ -6,21 +6,34 @@ import static org.mockito.Mockito.verify;
 import AddressBookTest.Person;
 import GUI.PersonDialog;
 import javax.swing.JFrame;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class PersonDialogIT {
 
-  private PersonDialog personDialog;
+  private PersonDialog personDialogA;
+  private PersonDialog personDialogB;
   private JFrame jframe;
   private Person person;
+  private Person testPerson;
+
 
   @Before
   public void setUp() {
     person = mock(Person.class);
-
     jframe = new JFrame();
-    personDialog = new PersonDialog(jframe, person);
+    personDialogA = new PersonDialog(jframe, person);
+
+    testPerson = new Person(
+        "John",
+        "Smith",
+        "123 Corona Virus",
+        "Fort Myers",
+        "FL",
+        "12345",
+        "123456789");
+    personDialogB = new PersonDialog(jframe, testPerson);
   }
 
   /**
@@ -30,7 +43,7 @@ public class PersonDialogIT {
    */
   @Test
   public void testGetPerson() {
-    personDialog.getPerson();
+    personDialogA.getPerson();
 
     verify(person).getFirstName();
     verify(person).getLastName();
@@ -39,5 +52,10 @@ public class PersonDialogIT {
     verify(person).getState();
     verify(person).getZip();
     verify(person).getPhone();
+  }
+
+  @Test
+  public void testGetPersonWithData() {
+    Assert.assertEquals(testPerson, personDialogB.getPerson());
   }
 }
