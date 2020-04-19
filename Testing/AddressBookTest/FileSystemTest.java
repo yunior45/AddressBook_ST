@@ -1,14 +1,15 @@
+package AddressBook;
+
 /***********************************************
  * Subject: AddressBook FileSystem test class
  * Course: CEN 4072 Software Testing
  * Author: Yunior Rivera
  * *********************************************/
 
-package AddressBookTest;
-
 import AddressBookTest.AddressBook;
 import AddressBookTest.FileSystem;
 import AddressBookTest.Person;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -22,21 +23,21 @@ public class FileSystemTest {
     @Test
     public void readFile() throws SQLException, FileNotFoundException {
         AddressBook addressBook = new AddressBook();
-        assertNotNull(addressBook);
         File testFile = new File("Resources/testAddressBook");
-        assertNotNull(testFile);
+        Assert.assertNotNull(testFile);
         new FileSystem().readFile(addressBook, testFile);
         addressBook.fireTableDataChanged();
+        Assert.assertNotNull(addressBook);
     }
 
     @Test (expected=FileNotFoundException.class)
     public void readFileNotFoundException() throws SQLException, FileNotFoundException {
         AddressBook addressBook = new AddressBook();
-        assertNotNull(addressBook);
         File testFile = new File("");
-        assertTrue(!testFile.exists() || !testFile.canRead());
         new FileSystem().readFile(addressBook, testFile);
+        Assert.assertTrue(!testFile.exists() || !testFile.canRead());
         addressBook.fireTableDataChanged();
+        Assert.assertNull(addressBook);
     }
 
     @Test
@@ -51,9 +52,9 @@ public class FileSystemTest {
                 "3056952200"
         );
         AddressBook addressBook = new AddressBook();
-        assertNotNull(addressBook);
+        Assert.assertNotNull(addressBook);
         File testFile = new File("Resources/testAddressBook2");
-        assertNotNull(testFile);
+        Assert.assertNotNull(testFile);
         new FileSystem().saveFile(addressBook, testFile);
         addressBook.add(p);
         new FileSystem().saveFile(addressBook, testFile);

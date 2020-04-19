@@ -38,7 +38,8 @@ public class FileSystem {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + file.getAbsolutePath());
         Statement statement = connection.createStatement();
         statement.execute("DROP TABLE IF EXISTS persons");
-        statement.execute("CREATE TABLE persons (firstName TEXT, lastName TEXT, address TEXT, city TEXT, state TEXT, zip TEXT, phone TEXT)");
+        statement.execute("CREATE TABLE persons (firstName TEXT, " +
+                "lastName TEXT, address TEXT, city TEXT, state TEXT, zip TEXT, phone TEXT)");
         // Insert the data into the database
         PreparedStatement insert = connection.prepareStatement("INSERT INTO persons (lastName, firstName, address, city, state, zip, phone) VALUES (?, ?, ?, ?, ?, ?, ?)");
         for (Person p : addressBook.getPersons()) {
