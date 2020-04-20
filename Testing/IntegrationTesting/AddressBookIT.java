@@ -3,6 +3,8 @@ package IntegrationTesting;
 
 import AddressBookTest.AddressBook;
 import AddressBookTest.Person;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
@@ -21,6 +23,7 @@ import static org.mockito.Mockito.*;
 public class AddressBookIT {
     private AddressBook addressBookObj = new AddressBook();
 
+
     private Person person1;
     private Person person2;
     private Person person3;
@@ -36,9 +39,9 @@ public class AddressBookIT {
 
         MockitoAnnotations.initMocks(this);
 
-        FieldSetter setter = new FieldSetter(addressBookObj, addressBookObj.getClass().getDeclaredField("persons"));
+        //FieldSetter setter = new FieldSetter(addressBookObj, addressBookObj.getClass().getDeclaredField("persons"));
 
-        setter.set(persons);
+        //setter.set(persons);
     }
 
     @Test
