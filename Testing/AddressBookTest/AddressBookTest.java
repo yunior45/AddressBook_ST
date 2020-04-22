@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.matchers.Null;
 
 public class AddressBookTest {
 
@@ -25,11 +26,12 @@ public class AddressBookTest {
 
   @Test
   public void testAddPerson() {
-    Assert.assertEquals(0, addressBook.getPersons().length);
     addressBook.add(person1);
-    Assert.assertEquals(1, addressBook.getPersons().length);
-    addressBook.add(null);
-    Assert.assertEquals(2, addressBook.getPersons().length);
+    Assert.assertEquals(person1, addressBook.get(0));
+
+    Assert.assertThrows(NullPointerException.class, () -> {
+      addressBook.add(null);
+    });
   }
 
   @Test
@@ -47,6 +49,14 @@ public class AddressBookTest {
 
     addressBook.set(1, person3);
     Assert.assertEquals(person3, addressBook.get(1));
+
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
+      addressBook.set(2, person1);
+    });
+
+    Assert.assertThrows(NullPointerException.class, () -> {
+      addressBook.set(1, null);
+    });
   }
 
   @Test
@@ -73,7 +83,7 @@ public class AddressBookTest {
 
   @Test
   public void testGet() {
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.get(0);
     });
 
@@ -81,7 +91,7 @@ public class AddressBookTest {
     addressBook.add(person2);
     addressBook.add(person3);
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.get(-1);
     });
 
@@ -89,7 +99,7 @@ public class AddressBookTest {
     Assert.assertEquals(person2, addressBook.get(1));
     Assert.assertEquals(person3, addressBook.get(2));
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.get(3);
     });
   }
@@ -151,7 +161,7 @@ public class AddressBookTest {
 
   @Test
   public void testGetValue() {
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.getValueAt(0, 0);
     });
 
@@ -159,7 +169,7 @@ public class AddressBookTest {
     addressBook.add(person2);
     addressBook.add(person3);
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.getValueAt(-1, 0);
     });
 
@@ -175,7 +185,7 @@ public class AddressBookTest {
     Assert.assertEquals("34109", addressBook.getValueAt(0, 5));
     Assert.assertEquals("1234567890", addressBook.getValueAt(0, 6));
 
-    Assert.assertThrows(Exception.class, () -> {
+    Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
       addressBook.getValueAt(3, 0);
     });
 

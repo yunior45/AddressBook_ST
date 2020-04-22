@@ -1,16 +1,14 @@
 package Testing.IntegrationTesting;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.isA;
 
-import AddressBookTest.AddressBookController;
 import AddressBookTest.AddressBook;
-import AddressBookTest.Person;
+import AddressBookTest.AddressBookController;
 import AddressBookTest.FileSystem;
+import AddressBookTest.Person;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -83,7 +81,14 @@ public class AddressBookControllerIT {
   }
 
   @Test(expected=FileNotFoundException.class)
-  public void testOpenInvalidFile() throws FileNotFoundException, SQLException {
+  public void testOpenInvalidFileDoesNotExist() throws FileNotFoundException, SQLException {
+    addressBookController.open(invalidFile);
+  }
+
+  @Test(expected=FileNotFoundException.class)
+  public void testOpenInvalidFileCannotRead() throws FileNotFoundException, SQLException {
+    when(invalidFile.exists()).thenReturn(true);
+
     addressBookController.open(invalidFile);
   }
 
