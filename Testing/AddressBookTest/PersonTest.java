@@ -149,11 +149,7 @@ public class PersonTest {
         assertEquals("FL", person.getField(4));
         assertEquals("33024", person.getField(5));
         assertEquals("3056952200", person.getField(6));
-    }
-
-    @Test(expected=IllegalArgumentException.class)
-    public void getFieldException(){
-        assertTrue(person.getField(-1)=="Field number out of bounds");
-        assertTrue(person.getField(7)=="Field number out of bounds");
+        assertThrows(IllegalArgumentException.class, () -> person.getField(-1));
+        assertThrows(IllegalArgumentException.class, () -> person.getField(7));
     }
 }
