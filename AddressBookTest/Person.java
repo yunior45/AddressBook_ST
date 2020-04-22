@@ -30,6 +30,8 @@ public class Person {
             throw new IllegalArgumentException("First name cannot be empty");
         if (lastName == null || lastName.isEmpty())
             throw new IllegalArgumentException("Last name cannot be empty");
+        if (zip.length() != 5 && !zip.isEmpty())
+            throw new IllegalArgumentException("Zip code can only be 5 characters long or blank");
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
