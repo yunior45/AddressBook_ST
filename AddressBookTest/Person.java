@@ -33,21 +33,13 @@ public class Person {
         if (zip.length() != 5 && !zip.isEmpty())
             throw new IllegalArgumentException("Zip code can only be 5 numbers long or blank.");
 
-        try {
-            if (!zip.isEmpty())
-                Integer.parseInt(zip);
-            if (!phone.isEmpty())
-                Long.parseLong(phone);
-        }
-        finally {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.address = address;
-            this.city = city;
-            this.state = state;
-            this.zip = zip;
-            this.phone = phone;
-        }
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phone = phone;
     }
 
 
