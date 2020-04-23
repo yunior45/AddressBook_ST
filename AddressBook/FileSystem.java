@@ -1,4 +1,4 @@
-package AddressBookTest;
+package AddressBook;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,7 +6,13 @@ import java.sql.*;
 
 
 public class FileSystem {
-    
+
+    /**
+     * Loads a saved address book from the database.
+     *
+     * @param addressBook AddressBook to read database records into.
+     * @param file File of the Database to read.
+     */
     public void readFile(AddressBook addressBook, File file) throws SQLException, FileNotFoundException {
         if (!file.exists() || !file.canRead()) {
             throw new FileNotFoundException();
@@ -32,7 +38,12 @@ public class FileSystem {
         connection.close();
     }
 
-
+    /**
+     * Save the address book to the database.
+     *
+     * @param addressBook AddressBook to save to database.
+     * @param file File of the Database to save to.
+     */
     public void saveFile(AddressBook addressBook, File file) throws SQLException {
         // Create the table structure
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + file.getAbsolutePath());

@@ -1,9 +1,9 @@
 package GUI;
 
-import AddressBookTest.AddressBook;
-import AddressBookTest.AddressBookController;
-import AddressBookTest.FileSystem;
-import AddressBookTest.Person;
+import AddressBook.AddressBook;
+import AddressBook.AddressBookController;
+import AddressBook.FileSystem;
+import AddressBook.Person;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -20,20 +20,9 @@ import static org.junit.Assert.assertEquals;
 
 
 public class AddressBookGUI extends JFrame {
-   
-    private static void createAndShowGUI() {
-        AddressBook addressBook = new AddressBook();
-        AddressBookController controller = new AddressBookController(addressBook);
-        AddressBookGUI gui = new AddressBookGUI(controller, addressBook);
-        gui.setVisible(true);
-    }
+    // Variables
+    private File currentFile = null;
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        Class.forName("org.sqlite.JDBC");
-        SwingUtilities.invokeLater(() -> createAndShowGUI());
-    }
-
-    
     private final AddressBookController controller;
     private final AddressBook addressBook;
     private final JTable nameList;
@@ -49,9 +38,15 @@ public class AddressBookGUI extends JFrame {
     private final JMenuItem quitItem = new JMenuItem("Exit", 'X');
     private final JTextField searchTextField = new JTextField("");
 
-    private File currentFile = null;
+    // Methods
 
-   
+    /**
+     * Class Constructor
+     * Creates the GUI for the program.
+     *
+     * @param controller AddressBookController to assign as the controller for system.
+     * @param addressBook AddressBook to assign as the address book.
+     */
     public AddressBookGUI(AddressBookController controller, AddressBook addressBook) {
         // Set our local variables
         this.controller = controller;
@@ -160,13 +155,13 @@ public class AddressBookGUI extends JFrame {
             }
 
             public void filter() {
-               
+
                 tableRowSorter.setRowFilter(RowFilter.regexFilter("(?iu)" + Pattern.quote(searchTextField.getText())));
             }
         });
         menuBar.add(searchTextField);
 
-      
+
         JPanel addEditDelPanel = new JPanel();
         addButton.setMnemonic('A');
         addButton.addActionListener(e ->
@@ -231,5 +226,23 @@ public class AddressBookGUI extends JFrame {
                 }
             }
         });
+    }
+
+    /**
+     * Creates the GUI and make it visible.
+     */
+    private static void createAndShowGUI() {
+        AddressBook addressBook = new AddressBook();
+        AddressBookController controller = new AddressBookController(addressBook);
+        AddressBookGUI gui = new AddressBookGUI(controller, addressBook);
+        gui.setVisible(true);
+    }
+
+    /**
+     * Starting point of the program.
+     */
+    public static void main(String[] args) throws ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
+        SwingUtilities.invokeLater(() -> createAndShowGUI());
     }
 }
