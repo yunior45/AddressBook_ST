@@ -14,6 +14,8 @@ public class PersonDialog extends JDialog {
         CANCEL,
     }
 
+    private Person person;
+
     private Result result;
     private JTextField firstName;
     private JTextField lastName;
@@ -122,6 +124,8 @@ public class PersonDialog extends JDialog {
         state.setText(person.getState());
         zip.setText(person.getZip());
         phone.setText(person.getPhone());
+
+        this.person = person;
     }
 
     
@@ -134,7 +138,18 @@ public class PersonDialog extends JDialog {
 
  
     public Person getPerson() {
+        // make sure persons first name and last name are set
         if (firstName != null && lastName != null && !firstName.getText().isEmpty() && !lastName.getText().isEmpty()) {
+            // check to make sure both zip and phone number are only numeric values
+            try {
+                Integer.parseInt(zip.getText());
+                Long.parseLong(phone.getText());
+            }
+            catch (NumberFormatException e){
+                // return previous person or null if not set
+                return person;
+            }
+
             return new Person(firstName.getText(),
                     lastName.getText(),
                     address.getText(),
@@ -143,7 +158,8 @@ public class PersonDialog extends JDialog {
                     zip.getText(),
                     phone.getText());
         } else {
-            return null;
+            // return previous person or null if not set
+            return person;
         }
     }
 }
