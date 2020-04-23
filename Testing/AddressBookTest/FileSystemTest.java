@@ -6,6 +6,7 @@
 
 package Testing.AddressBookTest;
 
+
 import AddressBook.AddressBook;
 import AddressBook.FileSystem;
 import AddressBook.Person;
@@ -19,6 +20,15 @@ import static org.junit.Assert.*;
 
 public class FileSystemTest {
 
+    /**
+     * Method: readFile()
+     * Summary: The readFile() method tests the functionalities of an addressbook to be
+     *          loaded within the addressbook program. An addressbook with a valid file
+     *          path is attempted to be opened and asserted that it opens.
+     *
+     * @throws SQLException
+     * @throws FileNotFoundException
+     */
     @Test
     public void readFile() throws SQLException, FileNotFoundException {
         AddressBook addressBook = new AddressBook();
@@ -29,7 +39,16 @@ public class FileSystemTest {
         addressBook.fireTableDataChanged();
     }
 
-    @Test (expected=FileNotFoundException.class)
+    /**
+     * Method: readFileNotFoundException()
+     * Summary: The readFileNotFoundException() method tests exception handling for reading an
+     *          invalid file path. An addressbook with an invalid path is attempted to be open
+     *          and is expected to throw a FileNotFoundException.
+     *
+     * @throws SQLException
+     * @throws FileNotFoundException
+     */
+    @Test(expected = FileNotFoundException.class)
     public void readFileNotFoundException() throws SQLException, FileNotFoundException {
         AddressBook addressBook = new AddressBook();
         assertNotNull(addressBook);
@@ -39,6 +58,14 @@ public class FileSystemTest {
         addressBook.fireTableDataChanged();
     }
 
+    /**
+     * Method: saveFile()
+     * Summary: The saveFile() method tests the functionalities of saving an addressbook in the
+     *          application. A person object is added to an addressbook then it is saved. that address
+     *          book is then asserted that it contains data.
+     *
+     * @throws SQLException
+     */
     @Test
     public void saveFile() throws SQLException {
         Person p = new Person(

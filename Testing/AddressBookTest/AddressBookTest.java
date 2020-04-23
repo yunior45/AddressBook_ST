@@ -14,6 +14,11 @@ public class AddressBookTest {
   private Person person2;
   private Person person3;
 
+  /**
+   * Method: setUp()
+   * Summary: The setUp() method is responsible for creating the different objects that will
+   *          be used throughout the different test methods.
+   */
   @Before
   public void setUp() {
     addressBook = new AddressBook();
@@ -22,6 +27,15 @@ public class AddressBookTest {
     person3 = new Person("Yunior", "Rivera", "1234 Name Ln", "Naples", "FL", "34109", "1234567890");
   }
 
+  /**
+   * Method: testAddPerson()
+   * Summary: The testAddPerson() method tests the functionalities of adding a person to the
+   *          address book directly. A Person Object is inputted into the addressbook and then
+   *          retrieved using the get() method within the AddressBook class. The results are
+   *          then asserted to equal the person object that was created. Exception handling is
+   *          also tested where if an attempt to enter an invalid person, a NullPointerException
+   *          is thrown.
+   */
   @Test
   public void testAddPerson() {
     addressBook.add(person1);
@@ -32,6 +46,15 @@ public class AddressBookTest {
     });
   }
 
+  /**
+   * Method: testSet()
+   * Summary: The testSet() method tests the functionalities of setting a person within
+   *          the addressbook. A person object is added to the addressbook then asserted
+   *          that the person object set at the index specified is the same as the person
+   *          object created. Exception handling is also done by testing an index input
+   *          of 0 when there is no one, -1 as an invalid index, 2 when there is a different
+   *          person stored there, and 1 with a null object.
+   */
   @Test
   public void testSet() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -57,6 +80,16 @@ public class AddressBookTest {
     });
   }
 
+  /**
+   * Method: testRemove()
+   * Summary: The testRemove() method tests the remove functionalities of the addressbook
+   *          application. 3 person objects are added to the addressbook, then person
+   *          at index 1 is removed. The person is retrieved through the get() method within
+   *          the addressbook class and compared with an addressbook created to assert that
+   *          both are equal. Exception handling testing is done by testing removing an object
+   *          from an empty addressbook, removing an invalid index from addressbook. and removing
+   *          an empty index from a addressbook containin people.
+   */
   @Test
   public void testRemove() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -78,7 +111,15 @@ public class AddressBookTest {
       addressBook.remove(2);
     });
   }
-
+  /**
+   * Method: testGet()
+   * Summary: The testGet() method tests the functionalities to retieve a person object.
+   *          3 person objects are added to the addressbook then retrieved using the get() function.
+   *          the results are then asserted to equal the person objects created. Exception handling
+   *          is tested by testing get() from an index on an empty addressbook, testing get() from an
+   *          invalid index, and testing get() at an index that is larger then the number of objects in
+   *          the addressbook.
+   */
   @Test
   public void testGet() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -102,6 +143,14 @@ public class AddressBookTest {
     });
   }
 
+  /**
+   * Method: testClear()
+   * Summary: The clear() method tests the clear functionalities of the addressbook
+   *          application. 3 person objects are added to the addressbook through
+   *          the addressbookcontroller and is asserted that there are 3 people within
+   *          the addressbook. The addressbook is then cleared and then asserted that
+   *          there are no people within the addressbook.
+   */
   @Test
   public void testClear() {
     Assert.assertEquals(0, addressBook.getPersons().length);
@@ -119,6 +168,13 @@ public class AddressBookTest {
     Assert.assertEquals(0, addressBook.getPersons().length);
   }
 
+  /**
+   * Method: testRowCount()
+   * Summary: The testRowCount() tests the functionalities of returning a number of rows
+   *          from the addressbook. Person objects are added into the addressbook and
+   *          then asserted that the number of objects added is the same as the asserted
+   *          value.
+   */
   @Test
   public void testRowCount() {
     Assert.assertEquals(0, addressBook.getRowCount());
@@ -133,11 +189,23 @@ public class AddressBookTest {
     Assert.assertEquals(1, addressBook.getRowCount());
   }
 
+  /**
+   * Method: testColumnCount()
+   * Summary: the TestColumnCount() method test the functionalities of returning the number
+   *          of columns witin the addressbook. it is asserted that the number of columns
+   *          in the addressbook.
+   */
   @Test
   public void testColumnCount() {
     Assert.assertEquals(7, addressBook.getColumnCount());
   }
 
+  /**
+   * Method: testColumnName()
+   * Summary: The testColumnName() method tests the functionalities of returning the different
+   *          column names from the addresssbook. it is asserted that each column name returned
+   *          matches the given value.
+   */
   @Test
   public void testColumnName() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -157,6 +225,12 @@ public class AddressBookTest {
     });
   }
 
+  /**
+   * Method: testGetValue()
+   * Summary: The testGetValue() method tests the functionalities of returning a value from an
+   *          addressbook. Person objects are added to the addressbook and then asserted that they
+   *          equal the given value. Exception handling is tested as well for invalid row and columns.
+   */
   @Test
   public void testGetValue() {
     Assert.assertThrows(IndexOutOfBoundsException.class, () -> {
