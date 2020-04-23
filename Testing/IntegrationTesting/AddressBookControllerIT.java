@@ -5,10 +5,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import AddressBookTest.AddressBook;
-import AddressBookTest.AddressBookController;
-import AddressBookTest.FileSystem;
-import AddressBookTest.Person;
+import AddressBook.AddressBook;
+import AddressBook.AddressBookController;
+import AddressBook.FileSystem;
+import AddressBook.Person;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;

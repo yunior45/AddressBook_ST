@@ -39,14 +39,29 @@ import java.awt.*;
 
 
 public class SpringUtilities {
-   
+
+    /**
+     * Print component min, preferred, max sizes to console.
+     *
+     * @param c  Component to get sizes from.
+     */
     public static void printSizes(Component c) {
         System.out.println("minimumSize = " + c.getMinimumSize());
         System.out.println("preferredSize = " + c.getPreferredSize());
         System.out.println("maximumSize = " + c.getMaximumSize());
     }
 
-  
+    /**
+     * Create the grid layout with the specified constraints.
+     *
+     * @param parent Container used to make a Layout.
+     * @param rows Integer number of rows.
+     * @param cols Integer number of columns.
+     * @param initialX Integer starting X value.
+     * @param initialY Integer starting Y value.
+     * @param xPad Integer number for X constraint.
+     * @param yPad Integer number for Y constraints.
+     */
     public static void makeGrid(Container parent,
                                 int rows, int cols,
                                 int initialX, int initialY,
@@ -122,7 +137,15 @@ public class SpringUtilities {
                         lastCons.getConstraint(SpringLayout.EAST)));
     }
 
-  
+    /**
+     * Get the constraints of the cells of the layout.
+     *
+     * @return Constraints of the Container Layout.
+     * @param row  Integer row index.
+     * @param col  Integer column index.
+     * @param parent  Container layout to get constraints from.
+     * @param cols  Integer number of columns in layout.
+     */
     private static SpringLayout.Constraints getConstraintsForCell(
             int row, int col,
             Container parent,
@@ -132,7 +155,17 @@ public class SpringUtilities {
         return layout.getConstraints(c);
     }
 
-   
+    /**
+     * Get the constraints of the cells of the layout.
+     *
+     * @param parent  Container layout to get constraints from.
+     * @param rows  Integer number of rows.
+     * @param cols  Integer number of columns.
+     * @param initialX Integer starting X value.
+     * @param initialY Integer starting Y value.
+     * @param xPad Integer number for X constraint.
+     * @param yPad Integer number for Y constraint.
+     */
     public static void makeCompactGrid(JPanel parent,
                                        int rows, int cols,
                                        int initialX, int initialY,

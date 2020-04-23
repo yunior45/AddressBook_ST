@@ -1,4 +1,4 @@
-package AddressBookTest;
+package Testing.AddressBookTest;
 
 /***********************************************
  * Subject: AddressBook FileSystem test class
@@ -7,10 +7,9 @@ package AddressBookTest;
  * *********************************************/
 
 
-import AddressBookTest.AddressBook;
-    import AddressBookTest.Person;
-import org.junit.Assert;
-import org.junit.Test;
+import AddressBook.Person;
+    import org.junit.Assert;
+    import org.junit.Test;
     import static org.junit.Assert.*;
 
 // This Class is the unit test for the Person class.

@@ -1,12 +1,10 @@
-package AddressBookTest;
+package Testing.AddressBookTest;
 
-import AddressBookTest.AddressBook;
-import AddressBookTest.Person;
-import java.util.NoSuchElementException;
+import AddressBook.AddressBook;
+import AddressBook.Person;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.Null;
 
 public class AddressBookTest {
 
