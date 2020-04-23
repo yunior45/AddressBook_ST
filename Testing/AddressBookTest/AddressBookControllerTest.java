@@ -1,10 +1,10 @@
-package AddressBookTest;
+package Testing.AddressBookTest;
 
 import static org.junit.Assert.*;
 
-import AddressBookTest.AddressBook;
-import AddressBookTest.AddressBookController;
-import AddressBookTest.Person;
+import AddressBook.AddressBook;
+import AddressBook.AddressBookController;
+import AddressBook.Person;
 import java.io.File;
 import java.io.FileNotFoundException;
 import org.junit.Assert;

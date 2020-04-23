@@ -4,11 +4,11 @@
  * Author: Yunior Rivera
  * *********************************************/
 
-package AddressBookTest;
+package Testing.AddressBookTest;
 
-import AddressBookTest.AddressBook;
-import AddressBookTest.FileSystem;
-import AddressBookTest.Person;
+import AddressBook.AddressBook;
+import AddressBook.FileSystem;
+import AddressBook.Person;
 import org.junit.Test;
 
 import java.io.File;

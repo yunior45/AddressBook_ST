@@ -1,20 +1,14 @@
 package IntegrationTesting;
 
 
-import AddressBookTest.AddressBook;
-import AddressBookTest.Person;
-import java.util.ArrayList;
+import AddressBook.AddressBook;
+import AddressBook.Person;
 import java.util.List;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.ArgumentCaptor;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.FieldSetter;
-import org.mockito.internal.util.reflection.FieldSetter.*;
 
 import static org.mockito.Mockito.*;
 

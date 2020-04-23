@@ -1,14 +1,14 @@
 package GUI;
 
-import AddressBookTest.Person;
+import AddressBook.Person;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-
 public class PersonDialog extends JDialog {
+    // Variables
     public enum Result {
         OK,
         CANCEL,
@@ -25,7 +25,14 @@ public class PersonDialog extends JDialog {
     private JTextField zip;
     private JTextField phone;
 
-  
+    // Methods
+
+    /**
+     * Class Constructor
+     * Creates a pop-up modal window to enter Person information.
+     *
+     * @param parent Frame to create the dialog modal window.
+     */
     public PersonDialog(Frame parent) {
         
         super(parent);
@@ -112,7 +119,13 @@ public class PersonDialog extends JDialog {
         setLocation((parent.getWidth() - getWidth()) / 2, (parent.getHeight() - getHeight()) / 2);
     }
 
-  
+    /**
+     * Class Constructor
+     * Creates a pop-up modal window to enter Person information.
+     *
+     * @param parent Frame to create the dialog modal window.
+     * @param person Person to get fields values to fill input boxes with.
+     */
     public PersonDialog(Frame parent, @Nullable Person person) {
         this(parent);
         if (person == null)
@@ -128,7 +141,11 @@ public class PersonDialog extends JDialog {
         this.person = person;
     }
 
-    
+    /**
+     * Get the Result status of the dialog window.
+     *
+     * @return Result of the Dialog status.
+     */
     public Result showDialog() {
         // Default to CANCEL if the user closes the dialog window
         result = Result.CANCEL;
@@ -136,7 +153,11 @@ public class PersonDialog extends JDialog {
         return result;
     }
 
- 
+    /**
+     * Return a new Person with the values of the input boxes.
+     *
+     * @return Person with fields equal to dialog window input boxes.
+     */
     public Person getPerson() {
         // make sure persons first name and last name are set
         if (firstName != null && lastName != null && !firstName.getText().isEmpty() && !lastName.getText().isEmpty()) {
